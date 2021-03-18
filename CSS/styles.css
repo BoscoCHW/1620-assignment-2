@@ -99,7 +99,6 @@ button[name="hide"] {
     font-size: 1.5rem;
 }
 .content button:hover, .sidebar > button:hover {
-    border: 0.1rem solid #9893a5;
     color: #b4637a;
 }
 
@@ -117,7 +116,7 @@ button[name="hide"] {
 
 .new_note > button {
     font-size: 2rem;
-    line-height: 0.5;
+    line-height: 0;
 }
 
 textarea {
