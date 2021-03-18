@@ -95,15 +95,15 @@ button[name="hide"] {
     float: right;
 }
 
-.content > button::first-letter {
+.content button[name="add_note"]::first-letter {
     font-size: 1.5rem;
 }
-.content > button:hover::first-letter, .sidebar > button:hover {
+.content button:hover, .sidebar > button:hover {
     border: 0.1rem solid #9893a5;
     color: #b4637a;
 }
 
-.notes{
+.menu{
     clear:both;
     text-align: center;
     line-height: 2rem;
@@ -114,24 +114,26 @@ button[name="hide"] {
     flex-direction: row;
     align-items: flex-start;
 }
-.new_note p {
+
+.new_note > button {
     font-size: 2rem;
     line-height: 0;
 }
 
 textarea {
-
     background-color: #fffaf3;
     border: None;
 }
-.action a {
+.action button {
     display: block;
 }
 
 #delete, #delete:hover {
     color: #b4637a;
+    padding: 0 0.2rem;
 }
 
 #save, #save:hover {
     color: #286983;
+    padding: 0 0.2rem;
 }
