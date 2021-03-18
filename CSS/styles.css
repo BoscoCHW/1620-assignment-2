@@ -116,6 +116,7 @@ button[name="hide"] {
 }
 .new_note p {
     font-size: 2rem;
+    line-height: 0;
 }
 
 textarea {
