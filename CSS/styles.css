@@ -11,7 +11,7 @@
     grid-template-areas:
       'sidebar header'
       'sidebar content'
-      'footer footer';
+      'sidebar footer';
     background-color: #f2e9de;
     color: #575279;
 }
@@ -64,9 +64,9 @@ a:hover {
 }
 .footer {
     grid-area: footer;
-    text-align: center;
+    text-align: end;
     align-self: end;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .sans-serif {
@@ -107,4 +107,30 @@ button[name="hide"] {
     clear:both;
     text-align: center;
     line-height: 2rem;
+}
+
+.new_note {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.new_note p {
+    font-size: 2rem;
+}
+
+textarea {
+
+    background-color: #fffaf3;
+    border: None;
+}
+.action a {
+    display: block;
+}
+
+#delete, #delete:hover {
+    color: #b4637a;
+}
+
+#save, #save:hover {
+    color: #286983;
 }
