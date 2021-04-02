@@ -150,7 +150,7 @@ button[name="hide"] {
     align-items: flex-start;
 }
 
-.new_note > button {
+.new_note > p {
     font-size: 2rem;
     line-height: 0;
 }
@@ -158,21 +158,31 @@ button[name="hide"] {
 textarea {
     background-color: #fffaf3;
     border: None;
+    padding: 0.5rem;
+}
+.dark-mode textarea {
+    background-color: #575279;
+    color: #f2e9de;
+    border: #f2e9de solid 1px;
 }
 .action button {
     display: block;
 }
 
-#delete {
+#cancel {
     color: #575279;
     padding: 0 0.2rem;
 }
-
 #save {
     color: #286983;
     padding: 0 0.2rem;
 }
-
-#delete:hover, #save:hover{
+#cancel:hover, #save:hover{
     color: #b4637a;
+}
+.dark-mode #cancel, .dark-mode #save {
+    color: #f2e9de;
+}
+.dark-mode #cancel:hover, .dark-mode #save:hover{
+    color: #faf4ed;
 }
