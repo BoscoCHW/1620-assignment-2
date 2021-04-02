@@ -76,10 +76,10 @@ a:hover {
     font-family: 'Cutive Mono', monospace;  
 }
 
-nav ul {
+.top-menu ul {
     text-align: end;
 }
-nav li {
+.top-menu li {
     display: inline-block;
     padding-right: 1rem;
 }
@@ -95,9 +95,9 @@ button[name="hide"] {
     float: right;
 }
 
-.content button[name="add_note"]::first-letter {
-    font-size: 1.5rem;
-}
+/* .content button[name="add_note"]::first-letter { */
+    /* font-size: 1.5rem; */
+/* } */
 .content button:hover, .sidebar > button:hover {
     color: #b4637a;
 }
@@ -106,6 +106,10 @@ button[name="hide"] {
     clear:both;
     text-align: center;
     line-height: 2rem;
+}
+
+.menu ol {
+    list-style-type: none;
 }
 
 .new_note {
@@ -127,12 +131,16 @@ textarea {
     display: block;
 }
 
-#delete, #delete:hover {
+#delete {
     color: #575279;
     padding: 0 0.2rem;
 }
 
-#save, #save:hover {
+#save {
     color: #286983;
     padding: 0 0.2rem;
+}
+
+#delete:hover, #save:hover{
+    color: #b4637a;
 }
