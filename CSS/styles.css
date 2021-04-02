@@ -6,7 +6,7 @@
 
 .container {
     display: grid;
-    grid-template-rows: minmax(5vh,auto) minmax(85vh,auto) minmax(10vh,auto);
+    grid-template-rows: minmax(10vh,auto) minmax(85vh,auto) minmax(10vh,auto);
     grid-template-columns: 20vw 1fr;
     grid-template-areas:
       'sidebar header'
@@ -14,6 +14,11 @@
       'sidebar footer';
     background-color: #f2e9de;
     color: #575279;
+}
+
+.dark-mode .container {
+    background-color: #575279;
+    color: #f2e9de;
 }
 
 @media screen and (max-width: 400px) {
@@ -27,16 +32,37 @@
           'footer';
     }
 }
+#change-theme-btn {
+    border: #575279 solid 2px;
+}
+#change-theme-btn:hover {
+    color: #286983;
+}
+.dark-mode #change-theme-btn {
+    color: #f2e9de;
+}
+.dark-mode #change-theme-btn:hover {
+    color: #faf4ed;
+}
 
 a:link {
     color: #286983;
     text-decoration: none;
 }
+.dark-mode a:link {
+    color: #f2e9de;
+}
 a:visited {
     color: #286983;
 }
+.dark-mode a:visited {
+    color: #f2e9de;
+}
 a:hover {
     color: #b4637a;
+}
+.dark-mode a:hover {
+    color: #faf4ed;
 }
 
 .header {
@@ -95,20 +121,26 @@ button[name="hide"] {
     float: right;
 }
 
-/* .content button[name="add_note"]::first-letter { */
-    /* font-size: 1.5rem; */
-/* } */
-.content button:hover, .sidebar > button:hover {
+#add-note-btn, #slide-side-menu-btn {
+    color: #575279;
+}
+#add-note-btn:hover, #slide-side-menu-btn:hover {
     color: #b4637a;
 }
+.dark-mode #add-note-btn, .dark-mode #slide-side-menu-btn {
+    color: #f2e9de;
+}
+.dark-mode #add-note-btn:hover, .dark-mode #slide-side-menu-btn:hover {
+    color: #faf4ed;
+}
 
-.menu{
+.side-menu{
     clear:both;
     text-align: center;
     line-height: 2rem;
 }
 
-.menu ol {
+.side-menu ol {
     list-style-type: none;
 }
 

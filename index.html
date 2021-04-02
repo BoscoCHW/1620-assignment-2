@@ -10,18 +10,19 @@
     <script defer src="./JS/app.js"></script>
     <title>Notely</title>
 </head>
-<body>
+<body class="dark-mode">
     <div class="container index">
         <header class="header sans-serif">
             <nav class="top-menu">
                 <ul>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Docs</a></li>
+                    <li><button id="change-theme-btn" name="switch-theme">Light Mode</button></li>
                 </ul>
             </nav>
         </header>
-        <nav class="sidebar monospace hidden"><button name="expand">>></button></nav>
-        <section class="content monospace"><button name="add_note">+ create a new note</button></section>
+        <nav class="sidebar monospace hidden"><button id="slide-side-menu-btn" name="expand">>></button></nav>
+        <section class="content monospace"><button id="add-note-btn" name="add-note">+ create a new note</button></section>
         <footer class="footer sans-serif"><p>created by Bosco Chan</p></footer>
     </div>
 </body>
