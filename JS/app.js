@@ -19,15 +19,18 @@ slideSideMenubtn.onclick = function () {
     } else {
         slideSideMenubtn.textContent = "<<"
     }
+
 }
 
 const addNotebtn = document.querySelector('#add-note-btn')
+addNotebtn.addEventListener('click', addNoteEditor)
+
 function addNoteEditor() {
     const addNotebtn = document.querySelector('#add-note-btn')
     const newNote = document.createElement('div')
     newNote.className = 'new_note'
     const innerhtml = `<p href="#">+ </p>
-                    <textarea id="note-content" name="quicknote" rows="10" cols="33" placeholder="your note here"></textarea>
+                    <textarea id="note-content" name="quicknote" rows="10" cols="33" placeholder="your note here (use first line as note title)"></textarea>
                     <div class="action">
                         <button href="#" id="save">save</button>
                         <button href="#" id="cancel">cancel</button>
@@ -35,17 +38,21 @@ function addNoteEditor() {
     newNote.innerHTML = innerhtml
     addNotebtn.parentElement.replaceChild(newNote, addNotebtn)
 
+    document.querySelector('#note-content').focus()
+
     document.querySelector('#cancel').addEventListener('click', closeNewNote)
     document.querySelector('#save').addEventListener('click', addNote)
 }
-addNotebtn.addEventListener('click', addNoteEditor)
+
 
 function closeNewNote() {
-    const newNote = document.querySelector('div.new_note')
+    
     const addNotebtn = document.createElement('button')
     addNotebtn.id = 'add-note-btn'
     addNotebtn.name = 'add-note'
     addNotebtn.innerText = '+ create a new note'
+
+    const newNote = document.querySelector('div.new_note')
     newNote.parentElement.replaceChild(addNotebtn, newNote)
     
     document.querySelector('#add-note-btn').addEventListener('click', addNoteEditor) 
@@ -53,6 +60,7 @@ function closeNewNote() {
 
 
 let notes = new Array
+
 function addNote() {
     let noteContent = document.querySelector('#note-content').value
     if (noteContent !== "") {
@@ -70,7 +78,31 @@ function addNote() {
         notes.push(note)
 
         closeNewNote()
+        displayNoteTitle(note)
         
     }
 }   
 
+function displayNoteTitle(note) {
+    const sideMenu = document.querySelector('.side-menu')
+    sideMenu.appendChild(createMenuItem(note))
+}
+
+function createMenuItem(note) {
+    let li = document.createElement('li')
+    let btn = document.createElement('button')
+    btn.textContent = note.title
+    li.appendChild(btn)
+    return li
+}
+
+function displayNote(note) {
+    let contentDiv = document.querySelector('section.content')
+    while (contentDiv.firstChild) {
+        contentDiv.removeChild(contentDiv.firstChild);
+    }
+    let noteContainer = document.createElement('div')
+    noteContainer.className = 'note-container'
+    noteContainer.textContent = note.title + note.body
+    contentDiv.appendChild(noteContainer)
+}

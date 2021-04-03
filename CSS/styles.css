@@ -38,9 +38,6 @@
 #change-theme-btn:hover {
     color: #286983;
 }
-.dark-mode #change-theme-btn {
-    color: #f2e9de;
-}
 .dark-mode #change-theme-btn:hover {
     color: #faf4ed;
 }
@@ -82,6 +79,7 @@ a:hover {
     background-color: #fffaf3;
 }
 
+
 .dark-mode .sidebar.expanded {
     background-color: #575279;
     border-right: #6e6a86 solid 1px;
@@ -118,32 +116,33 @@ button {
     background-color: inherit;
     border: none;
     padding: 0.3rem;
-    
+    color: #575279;
+}
+button:hover {
+    color: #b4637a;
+}
+.dark-mode button {
+    color: #f2e9de;
+}
+.dark-mode button:hover {
+    color: #faf4ed;
 }
 button[name="hide"] {
     float: right;
 }
 
-#add-note-btn, #slide-side-menu-btn {
-    color: #575279;
-}
-#add-note-btn:hover, #slide-side-menu-btn:hover {
-    color: #b4637a;
-}
-.dark-mode #add-note-btn, .dark-mode #slide-side-menu-btn {
-    color: #f2e9de;
-}
-.dark-mode #add-note-btn:hover, .dark-mode #slide-side-menu-btn:hover {
-    color: #faf4ed;
-}
 
-.side-menu{
+.side-menu {
     clear:both;
     text-align: center;
     line-height: 2rem;
+    display: none;
+}
+nav.expanded .side-menu {
+    display: block;
 }
 
-.side-menu ol {
+ol.side-menu {
     list-style-type: none;
 }
 
