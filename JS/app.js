@@ -1,20 +1,33 @@
 const changeThemebtn = document.querySelector('#change-theme-btn')
-function changeTheme() {
+changeThemebtn.onclick = function () {
     document.body.classList.toggle("dark-mode")
     let mode = changeThemebtn.textContent
     if (mode === "Light Mode") { changeThemebtn.textContent = "Dark Mode"} 
     else { changeThemebtn.textContent = "Light Mode"} 
 }
-changeThemebtn.onclick = changeTheme
 
+const slideSideMenubtn = document.querySelector('#slide-side-menu-btn')
+slideSideMenubtn.onclick = function () {
+    slideSideMenubtn.parentElement.classList.toggle('expanded')
+    if (slideSideMenubtn.name === 'hide') {
+        slideSideMenubtn.name = 'expand'
+    } else {
+        slideSideMenubtn.name = 'hide'
+    }
+    if (slideSideMenubtn.textContent === "<<") {
+        slideSideMenubtn.textContent = ">>"
+    } else {
+        slideSideMenubtn.textContent = "<<"
+    }
+}
 
 const addNotebtn = document.querySelector('#add-note-btn')
 function addNoteEditor() {
-    const newNote = document.createElement('div')
     const addNotebtn = document.querySelector('#add-note-btn')
+    const newNote = document.createElement('div')
     newNote.className = 'new_note'
     const innerhtml = `<p href="#">+ </p>
-                    <textarea name="quicknote" rows="10" cols="33" placeholder="your note here"></textarea>
+                    <textarea id="note-content" name="quicknote" rows="10" cols="33" placeholder="your note here"></textarea>
                     <div class="action">
                         <button href="#" id="save">save</button>
                         <button href="#" id="cancel">cancel</button>
@@ -22,17 +35,42 @@ function addNoteEditor() {
     newNote.innerHTML = innerhtml
     addNotebtn.parentElement.replaceChild(newNote, addNotebtn)
 
-    document.querySelector('#cancel').addEventListener('click', cancelNewNote)
+    document.querySelector('#cancel').addEventListener('click', closeNewNote)
+    document.querySelector('#save').addEventListener('click', addNote)
 }
 addNotebtn.addEventListener('click', addNoteEditor)
 
-function cancelNewNote() {
-    let newNote = document.querySelector('div.new_note')
-    let addNotebtn = document.createElement('button')
+function closeNewNote() {
+    const newNote = document.querySelector('div.new_note')
+    const addNotebtn = document.createElement('button')
     addNotebtn.id = 'add-note-btn'
     addNotebtn.name = 'add-note'
     addNotebtn.innerText = '+ create a new note'
     newNote.parentElement.replaceChild(addNotebtn, newNote)
     
-    document.querySelector('#add-note-btn').onclick = addNoteEditor
+    document.querySelector('#add-note-btn').addEventListener('click', addNoteEditor) 
 }
+
+
+let notes = new Array
+function addNote() {
+    let noteContent = document.querySelector('#note-content').value
+    if (noteContent !== "") {
+
+        let firstlineBreak = noteContent.indexOf('\n')
+
+        let note = {}
+        if (firstlineBreak === -1) {
+            note.title = noteContent
+        } else {
+            note.title = noteContent.slice(0, firstlineBreak)
+            note.body = noteContent.slice(firstlineBreak, noteContent.length)
+        }
+        
+        notes.push(note)
+
+        closeNewNote()
+        
+    }
+}   
+

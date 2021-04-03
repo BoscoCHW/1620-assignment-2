@@ -75,13 +75,16 @@ a:hover {
 .sidebar {
     grid-area: sidebar;
 }
-.sidebar.hidden {
-    padding-top: 2rem;
-    padding-left: 0.5rem;  
+.sidebar {
+    padding: 2rem 0.5rem 0.5rem 0.5rem;
 }
 .sidebar.expanded {
-    padding: 0.5rem;
     background-color: #fffaf3;
+}
+
+.dark-mode .sidebar.expanded {
+    background-color: #575279;
+    border-right: #6e6a86 solid 1px;
 }
 .content {
     grid-area: content;
