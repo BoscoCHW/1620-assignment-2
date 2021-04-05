@@ -115,25 +115,43 @@ function createMenuItem(note) {
     } else {
         li.textContent = note.title
     }
-    li.id = 'note-' + note.id
+    li.id = 'noteTitle-' + note.id
     return li
 }
 sideMenu = document.querySelector('ol.side-menu')
 sideMenu.addEventListener('click', (ev)=> {
-    let contentDiv = document.querySelector('section.content')
+    let notesContainer = document.querySelector('.notes-container')
     let liElementID = ev.target.id
     let noteID = Number(liElementID.slice(liElementID.indexOf('-')+1, liElementID.length))
     let note = findNote(noteID)
 
-    while (contentDiv.firstChild) {
-        contentDiv.removeChild(contentDiv.firstChild)
+    let notesRow = document.querySelector('div.notes-row:last-child')
+    if (!notesRow | notesRow.childElementCount >= 3) {
+        // console.log('inside if')
+        notesRow = document.createElement('div')
+        notesRow.className = 'notes-row'
     }
-    let noteContainer = document.createElement('div')
-    noteContainer.className = 'note-container'
-    noteContainer.innerHTML = `<span class="close-note">&times;</span><p class="title">${note.title}</p><p>${note.body}</p>`
-    contentDiv.appendChild(noteContainer)
+    // console.log(notesRow.childElementCount)
 
-    document.querySelector('span.close-note').addEventListener('click', closeNote)
+    noteElementID = 'note-' + noteID
+    let noteDisplay = document.querySelector('#'+noteElementID)
+
+    if (!noteDisplay) {
+        let noteContainer = document.createElement('div')
+        noteContainer.className = 'note-container'
+        noteContainer.id = 'note-' + note.id
+        if (!note.body) {
+            body = ""
+        } else {
+            body = note.body
+        }
+        noteContainer.innerHTML = `<span class="close-note">&times;</span><p class="title">${note.title}</p><p>${body}</p>`
+        notesRow.appendChild(noteContainer)
+        notesContainer.appendChild(notesRow)
+    }
+    
+    document.querySelector('#'+noteElementID).focus()
+    notesRow.addEventListener('click', closeNote, true)
 
 }, true)
 
@@ -145,7 +163,20 @@ function findNote(noteID) {
     }
 }
 
-function closeNote() {
-    contentDiv = document.querySelector('section.content')
-    contentDiv.removeChild(contentDiv.firstChild)
+
+function closeNote(ev) {
+    eventTarget = ev.target
+    // console.log(eventTarget)
+    if (eventTarget.className === 'close-note') {
+
+        noteContainer = ev.target.parentElement
+        notesRow = noteContainer.parentElement
+        notesRow.removeChild(noteContainer)
+        notesContainer = notesRow.parentElement
+        if (notesRow.childElementCount === 0 && notesContainer.childElementCount >= 2) {
+            notesContainer.removeChild(notesRow)
+        }
+    }
+    
+
 }

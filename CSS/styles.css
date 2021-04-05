@@ -120,6 +120,7 @@ button {
 }
 button:hover {
     color: #b4637a;
+    cursor: pointer;
 }
 .dark-mode button {
     color: #f2e9de;
@@ -137,13 +138,14 @@ button[name="hide"] {
     text-align: center;
     line-height: 2rem;
     display: none;
+    list-style-type: none;
 }
 nav.expanded .side-menu {
     display: block;
 }
 
-ol.side-menu {
-    list-style-type: none;
+.side-menu li:hover {
+    cursor: pointer;
 }
 
 .new_note {
@@ -188,7 +190,9 @@ textarea {
 .dark-mode #cancel:hover, .dark-mode #save:hover{
     color: #faf4ed;
 }
-
+.notes-row {
+    display: flex;
+}
 .note-container {
     margin: 1rem;
     padding: 0.3rem;
@@ -213,6 +217,7 @@ textarea {
 }
 .close-note:hover {
     background-color: #d7827e;
+    cursor: pointer;
 }
 .dark-mode .close-note:hover {
     background-color: #6e6a86;
