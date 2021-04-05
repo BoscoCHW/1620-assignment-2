@@ -38,8 +38,8 @@ slideSideMenubtn.onclick = function () {
 const addNotebtn = document.querySelector('#add-note-btn')
 addNotebtn.addEventListener('click', addNoteEditor)
 
-function addNoteEditor() {
-    const addNotebtn = document.querySelector('#add-note-btn')
+function addNoteEditor(ev) {
+    const addNotebtn = ev.target
     const newNote = document.createElement('div')
     newNote.className = 'new_note'
     const innerhtml = `<p href="#">+ </p>
@@ -87,44 +87,65 @@ function addNote() {
         let firstlineBreak = noteContent.indexOf('\n')
 
         let note = {}
+        note.id = notes.length + 1
         if (firstlineBreak === -1) {
-            note.title = noteContent
+            note.title = noteContent.trim()
         } else {
-            note.title = noteContent.slice(0, firstlineBreak)
-            note.body = noteContent.slice(firstlineBreak, noteContent.length)
+            note.title = noteContent.slice(0, firstlineBreak).trim()
+            note.body = noteContent.slice(firstlineBreak, noteContent.length).trim()
         }
         
         notes.push(note)
 
         closeNewNote()
-        displayNoteTitle(note)
+        addNoteTitle2Menu(note)
         
-    }
+    } 
 }   
 
-function displayNoteTitle(note) {
+function addNoteTitle2Menu(note) {
     const sideMenu = document.querySelector('.side-menu')
     sideMenu.appendChild(createMenuItem(note))
 }
 
 function createMenuItem(note) {
     let li = document.createElement('li')
-    let btn = document.createElement('button')
-    btn.textContent = note.title
-    btn.addEventListener('click', displayNote(note))
-
-    li.appendChild(btn)
-
+    if (note.title.length > 15) {
+        li.textContent = note.title.slice(0,16) + '...'
+    } else {
+        li.textContent = note.title
+    }
+    li.id = 'note-' + note.id
     return li
 }
-
-function displayNote(note) {
+sideMenu = document.querySelector('ol.side-menu')
+sideMenu.addEventListener('click', (ev)=> {
     let contentDiv = document.querySelector('section.content')
+    let liElementID = ev.target.id
+    let noteID = Number(liElementID.slice(liElementID.indexOf('-')+1, liElementID.length))
+    let note = findNote(noteID)
+
     while (contentDiv.firstChild) {
-        contentDiv.removeChild(contentDiv.firstChild);
+        contentDiv.removeChild(contentDiv.firstChild)
     }
     let noteContainer = document.createElement('div')
     noteContainer.className = 'note-container'
-    noteContainer.textContent = note.title + note.body
+    noteContainer.innerHTML = `<span class="close-note">&times;</span><p class="title">${note.title}</p><p>${note.body}</p>`
     contentDiv.appendChild(noteContainer)
+
+    document.querySelector('span.close-note').addEventListener('click', closeNote)
+
+}, true)
+
+function findNote(noteID) {
+    for (note of notes) {
+        if (note.id === noteID) {
+            return note
+        }
+    }
+}
+
+function closeNote() {
+    contentDiv = document.querySelector('section.content')
+    contentDiv.removeChild(contentDiv.firstChild)
 }

@@ -188,3 +188,32 @@ textarea {
 .dark-mode #cancel:hover, .dark-mode #save:hover{
     color: #faf4ed;
 }
+
+.note-container {
+    margin: 1rem;
+    padding: 0.3rem;
+    width: 15rem;
+    height: 15rem;
+    border: #6e6a86 solid 1px;
+}
+.dark-mode .note-container {
+    border: #f2e9de solid 1px;
+}
+.title {
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+}
+
+.close-note {
+    float: right;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.4rem;
+    text-align: center;
+}
+.close-note:hover {
+    background-color: #d7827e;
+}
+.dark-mode .close-note:hover {
+    background-color: #6e6a86;
+}
